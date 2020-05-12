@@ -1,18 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     service: backend-user
   name: backend-user
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
         service: backend-user
     spec:
       containers:
-      - image: scheele/udacity-restapi-user
+      - image: nishantt95/rest-user
         name: backend-user 
         imagePullPolicy: Always  
         resources:
@@ -21,7 +21,9 @@ spec:
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"      
+            cpu: "500m"
+        ports:
+          - containerPort: 8080
         env:
         - name: URL
           valueFrom:
