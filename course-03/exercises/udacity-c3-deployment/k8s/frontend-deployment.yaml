@@ -1,9 +1,8 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
     service: frontend
-    api: external
   name: frontend
 spec:
   replicas: 1
@@ -11,20 +10,19 @@ spec:
     metadata:
       labels:
         service: frontend
-        api: external        
+        api: external
     spec:
       containers:
-      - image: nishantt95/frontend
-        name: frontend
-        imagePullPolicy: Always          
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "1024Mi"
-            cpu: "500m"                
+        - image: nishantt95/frontend
+          name: frontend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
       restartPolicy: Always
-
